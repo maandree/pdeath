@@ -1,0 +1,19 @@
+NAME
+	pdeath - Run a command that is killed when its parent exits
+
+SYNOPSIS
+	pdeath signal[(+|-)off] command [argument]...
+
+	pdeath -L
+
+DESCRIPTION
+	pdeath runs the select command with the parent death signal set to
+	signal plus or minus off. This means that the process receives this
+	signal when its parent process dies.
+
+OPTIONS
+	-L	List all signals.
+
+LIMITATIONS
+	pdeath cannot be used on binaries with set-user-ID or set-group-ID set.
+
