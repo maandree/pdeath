@@ -1,0 +1,19 @@
+RUNTIME DEPENDENCIES:
+
+	libc
+	linux>=2.1.57
+
+
+BUILD DEPENDENCIES:
+
+	libc
+	linux>=2.1.57
+	cc
+	make
+	coreutils
+
+
+INSTALL DEPENDENCIES:
+
+	make
+	coreutils
