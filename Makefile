@@ -2,6 +2,8 @@ PREFIX = /usr
 BINDIR = $(PREFIX)/bin
 DATADIR = $(PREFIX)/share
 LICENSEDIR = $(DATADIR)/licences
+MANDIR = $(DATADIR)/man
+MAN1DIR = $(MANDIR)/man1
 
 PKGNAME = pdeath
 COMMAND = pdeath
@@ -23,9 +25,12 @@ install: bin/pdeath
 	cp -- bin/pdeath "$(DESTDIR)$(BINDIR)/$(COMMAND)"
 	mkdir -p -- "$(DESTDIR)$(LICENSEDIR)/$(PKGNAME)"
 	cp -- LICENSE "$(DESTDIR)$(LICENSEDIR)/$(PKGNAME)/LICENSE"
+	mkdir -p -- "$(DESTDIR)$(MAN1DIR)"
+	cp doc/pdeath.1 -- "$(DESTDIR)$(MAN1DIR)/$(COMMAND).1"
 
 uninstall:
 	-rm -- "$(DESTDIR)$(BINDIR)/$(COMMAND)"
+	-rm -- "$(DESTDIR)$(MAN1DIR)/$(COMMAND).1"
 
 clean:
 	-rm -rf bin
