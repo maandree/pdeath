@@ -4,3 +4,6 @@
 *.o
 *.su
 /pdeath
+/tinysleep
+/test
+/.testdir

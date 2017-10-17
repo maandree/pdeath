@@ -3,13 +3,38 @@
 CONFIGFILE = config.mk
 include $(CONFIGFILE)
 
-all: pdeath
+all: pdeath tinysleep test
 
 .o:
 	$(CC) -o $@ $^ $(LDFLAGS)
 
 .c.o:
 	$(CC) -o $@ $< $(CPPFLAGS) $(CFLAGS)
+
+check: pdeath tinysleep test
+	./pdeath -L >/dev/null
+	./pdeath -L | grep ABRT >/dev/null
+	./pdeath -L | grep FPE >/dev/null
+	./pdeath -L | grep ILL >/dev/null
+	./pdeath -L | grep INT >/dev/null
+	./pdeath -L | grep SEGV >/dev/null
+	./pdeath -L | grep TERM >/dev/null
+	! ./pdeath 2>/dev/null
+	! ./pdeath KILL 2>/dev/null
+	./pdeath KILL true
+	! ./pdeath KILL false
+	./pdeath 1 true
+	./pdeath 1+1 true
+	./pdeath 2-1 true
+	! ./pdeath - true 2>/dev/null
+	! ./test
+	./pdeath KILL ./test
+	mkdir -p .testdir
+	sleep 1 & printf '%i\n' $$! > .testdir/pid; ./tinysleep
+	kill -0 $$(cat .testdir/pid)
+	./pdeath KILL sleep 1 & printf '%i\n' $$! > .testdir/pid; ./tinysleep
+	! kill -0 $$(cat .testdir/pid) 2>/dev/null
+	rm -r .testdir
 
 install: pdeath
 	mkdir -p -- "$(DESTDIR)$(PREFIX)/bin"
@@ -25,7 +50,7 @@ uninstall:
 	-rm -rf -- "$(DESTDIR)$(PREFIX)/share/licenses/pdeath"
 
 clean:
-	-rm -f -- *.o pdeath
+	-rm -rf -- *.o pdeath .testdir
 
 SUFFIXES: .o .c.o
 
