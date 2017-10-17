@@ -1,5 +1,4 @@
 /* See LICENSE file for copyright and license details. */
-
 #include <sys/prctl.h>
 #include <errno.h>
 #include <limits.h>
@@ -9,8 +8,6 @@
 #include <string.h>
 #include <strings.h>
 #include <unistd.h>
-
-#define FAILURE  127
 
 struct sig {
 	int signo;
@@ -59,16 +56,15 @@ const char *argv0;
 static void
 usage(void)
 {
-	fprintf(stderr, "usage: %s (signal)[(+|-)off] command [arguments]...\n", argv0);
-	fprintf(stderr, "usage: %s -L\n", argv0);
-	exit(FAILURE);
+	fprintf(stderr, "usage: %s (-L | (signal)[(+|-)off] command [argument] ...)\n", argv0);
+	exit(127);
 }
 
 static void
 invalid_signal(void)
 {
 	fprintf(stderr, "%s: invalid signal\n", argv0);
-	exit(FAILURE);
+	exit(127);
 }
 
 static void
@@ -138,7 +134,7 @@ main(int argc, char *argv[])
 			print_signals();
 			if (fflush(stdout) || fclose(stdout)) {
 				perror(argv0);
-				return FAILURE;
+				return 127;
 			}
 			return 0;
 		}
@@ -161,10 +157,10 @@ main(int argc, char *argv[])
 
 	if (prctl(PR_SET_PDEATHSIG, signo) == -1) {
 		perror(argv0);
-		return FAILURE;
+		return 127;
 	}
 
 	execvp(*argv, argv);
 	fprintf(stderr, "%s: %s: %s\n", argv0, strerror(errno), *argv);
-	return FAILURE;
+	return 127;
 }

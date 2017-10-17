@@ -2,9 +2,7 @@ NAME
 	pdeath - Run a command that is killed when its parent exits
 
 SYNOPSIS
-	pdeath signal[(+|-)off] command [argument]...
-
-	pdeath -L
+	pdeath -L (signal[(+|-)off] command [argument] ...)
 
 DESCRIPTION
 	pdeath runs the select command with the parent death signal set to
@@ -16,4 +14,3 @@ OPTIONS
 
 LIMITATIONS
 	pdeath cannot be used on binaries with set-user-ID or set-group-ID set.
-

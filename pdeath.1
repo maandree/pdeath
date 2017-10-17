@@ -3,12 +3,10 @@
 pdeath \- Run a command that is killed when its parent exits
 .SH SYNOPSIS
 .B pdeath
-\fIsignal\fP[(\fB+\fP|\fB-\fP)\fIoff\fP]
+(-L |
+.RB \fIsignal\fP[( + | - )\fIoff\fP]
 .I command
-.RI [ argument ]...
-.P
-.B pdeath
-.B -L
+.RI [ argument ]\ ...)
 .SH DESCRIPTION
 .B pdeath
 runs the select command with the parent death signal set to
@@ -25,10 +23,5 @@ List all signals.
 .B pdeath
 cannot be used on binaries with set-user-ID or set-group-ID set.
 .SH AUTHORS
-Principal author, Mattias Andrée. See the LICENSE file for the full
-list of authors.
-.SH LICENSE
-ISC License.
-.SH BUGS
-Please report bugs to https://github.com/maandree/pdeath/issues or to
-maandree@kth.se
+Mattias Andrée
+.RI < maandree@kth.se >
