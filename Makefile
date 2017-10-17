@@ -11,7 +11,7 @@ all: pdeath
 .c.o:
 	$(CC) -o $@ $< $(CPPFLAGS) $(CFLAGS)
 
-install: bin/pdeath
+install: pdeath
 	mkdir -p -- "$(DESTDIR)$(PREFIX)/bin"
 	mkdir -p -- "$(DESTDIR)$(PREFIX)/share/licenses/pdeath"
 	mkdir -p -- "$(DESTDIR)$(MANPREFIX)/man1"

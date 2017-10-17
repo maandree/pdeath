@@ -47,7 +47,6 @@ struct sig {
 	{SIGIO,     "IO"},
 	{SIGPWR,    "PWR"},
 	{SIGSYS,    "SYS"},
-	{SIGUNUSED, "UNUSED"},
 	{0,         NULL}
 };
 
