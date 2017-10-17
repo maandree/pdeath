@@ -50,7 +50,7 @@ uninstall:
 	-rm -rf -- "$(DESTDIR)$(PREFIX)/share/licenses/pdeath"
 
 clean:
-	-rm -rf -- *.o pdeath .testdir
+	-rm -rf -- *.o pdeath tinysleep test .testdir
 
 SUFFIXES: .o .c.o
 
