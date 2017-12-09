@@ -5,11 +5,17 @@ include $(CONFIGFILE)
 
 all: pdeath tinysleep test
 
-.o:
-	$(CC) -o $@ $^ $(LDFLAGS)
+pdeath: pdeath.o
+	$(CC) -o $@ pdeath.o $(LDFLAGS)
+
+tinysleep: tinysleep.o
+	$(CC) -o $@ tinysleep.o $(LDFLAGS)
+
+test: test.o
+	$(CC) -o $@ test.o $(LDFLAGS)
 
 .c.o:
-	$(CC) -o $@ $< $(CPPFLAGS) $(CFLAGS)
+	$(CC) -c -o $@ $< $(CPPFLAGS) $(CFLAGS)
 
 check: pdeath tinysleep test
 	./pdeath -L >/dev/null
@@ -52,6 +58,7 @@ uninstall:
 clean:
 	-rm -rf -- *.o pdeath tinysleep test .testdir
 
-SUFFIXES: .o .c.o
+SUFFIXES:
+SUFFIXES: .o .c
 
 .PHONY: all check install uninstall clean
