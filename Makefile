@@ -3,6 +3,7 @@
 CONFIGFILE = config.mk
 include $(CONFIGFILE)
 
+
 all: pdeath tinysleep test
 
 pdeath: pdeath.o
@@ -44,19 +45,16 @@ check: pdeath tinysleep test
 
 install: pdeath
 	mkdir -p -- "$(DESTDIR)$(PREFIX)/bin"
-	mkdir -p -- "$(DESTDIR)$(PREFIX)/share/licenses/pdeath"
 	mkdir -p -- "$(DESTDIR)$(MANPREFIX)/man1"
 	cp -- pdeath "$(DESTDIR)$(PREFIX)/bin/"
-	cp -- LICENSE "$(DESTDIR)$(PREFIX)/share/licenses/pdeath/"
 	cp -- pdeath.1 "$(DESTDIR)$(MANPREFIX)/man1/"
 
 uninstall:
 	-rm -f -- "$(DESTDIR)$(PREFIX)/bin/pdeath"
 	-rm -f -- "$(DESTDIR)$(MANPREFIX)/man1/pdeath.1"
-	-rm -rf -- "$(DESTDIR)$(PREFIX)/share/licenses/pdeath"
 
 clean:
-	-rm -rf -- *.o pdeath tinysleep test .testdir
+	-rm -rf -- *.o *.su pdeath tinysleep test .testdir
 
 SUFFIXES:
 SUFFIXES: .o .c
