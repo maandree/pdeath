@@ -8,7 +8,7 @@ BUILD DEPENDENCIES:
 
 	libc
 	linux>=2.1.57
-	cc
+	c99
 	make
 	coreutils
 

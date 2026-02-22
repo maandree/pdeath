@@ -5,7 +5,7 @@ SYNOPSIS
 	pdeath -L (signal[(+|-)off] command [argument] ...)
 
 DESCRIPTION
-	pdeath runs the select command with the parent death signal set to
+	pdeath runs the selected command with the parent death signal set to
 	signal plus or minus off. This means that the process receives this
 	signal when its parent process dies.
 
